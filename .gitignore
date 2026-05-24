@@ -1,0 +1,33 @@
+# Maven / Java build output
+target/
+*.class
+
+# IDE files
+.idea/
+.vscode/
+.settings/
+.classpath
+.project
+*.iml
+.factorypath
+.metadata/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Local databases / runtime state
+.h2/
+*.db
+*.sqlite
+
+# Environment files
+.env
+.env.*
+
+# Test/coverage generated output
+coverage/
