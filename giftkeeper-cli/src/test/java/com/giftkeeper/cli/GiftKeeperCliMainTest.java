@@ -87,8 +87,8 @@ class GiftKeeperCliMainTest {
         private final StringBuilder messages = new StringBuilder();
 
         @Override
-        public void publish(final LogRecord record) {
-            messages.append(record.getMessage()).append(System.lineSeparator());
+        public void publish(final LogRecord logRecord) {
+            messages.append(logRecord.getMessage()).append(System.lineSeparator());
         }
 
         @Override

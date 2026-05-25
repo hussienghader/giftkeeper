@@ -23,7 +23,6 @@ import jakarta.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -96,7 +95,7 @@ class JpaRepositoryUnitTest {
             .get()
             .extracting(Person::getId, Person::getName, Person::getBirthDate)
             .containsExactly(person.getId(), person.getName(), person.getBirthDate());
-        assertThat(repository.findById(UUID.randomUUID())).isEqualTo(Optional.empty());
+        assertThat(repository.findById(UUID.randomUUID())).isEmpty();
 
         @SuppressWarnings("unchecked") final TypedQuery<JpaPersonEntity> query = mock(TypedQuery.class);
         when(em.createQuery(any(String.class), eq(JpaPersonEntity.class))).thenReturn(query);
