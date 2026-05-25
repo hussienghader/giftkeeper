@@ -2,11 +2,9 @@ name: GiftKeeper CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
@@ -25,20 +23,20 @@ jobs:
           java-version: 17
           cache: maven
 
-      - name: Build and test
+      - name: Build, test, and generate JaCoCo reports
         run: mvn -B clean verify
 
-      - name: SonarCloud scan
+      - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: >
-          mvn -B sonar:sonar
-          -Dsonar.projectKey=hussienghader_giftkeeper
-          -Dsonar.projectName="GiftKeeper Parent"
-          -Dsonar.organization=hussienghader
-          -Dsonar.host.url=https://sonarcloud.io
-          -Dsonar.token=${SONAR_TOKEN}
-          -Dsonar.coverage.jacoco.xmlReportPaths=**/target/site/jacoco/jacoco.xml
-          -Dsonar.exclusions=**/target/**,**/.git/**,**/.mvn/**,giftkeeper-persistence-api/**,giftkeeper-bdd/src/main/java/**,giftkeeper-e2e/src/main/java/**
-          -Dsonar.coverage.exclusions=**/*Main.java,**/*Application.java,**/*Module.java,**/*UseCases.java,**/*Repository.java,**/*Catalog.java,**/JpaPersistence.java,giftkeeper-persistence-api/**,giftkeeper-bdd/**,giftkeeper-e2e/**
-          -Dsonar.cpd.exclusions=**/src/test/**,giftkeeper-bdd/**,giftkeeper-e2e/**
+        run: |
+          mvn -B sonar:sonar \
+            -Dsonar.projectKey=hussienghader_giftkeeper \
+            -Dsonar.projectName=GiftKeeper \
+            -Dsonar.organization=hussienghader \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.token=${SONAR_TOKEN} \
+            -Dsonar.coverage.jacoco.xmlReportPaths="**/target/site/jacoco/jacoco.xml" \
+            -Dsonar.exclusions="**/target/**,**/.git/**,**/.mvn/**,giftkeeper-persistence-api/**,giftkeeper-bdd/**,giftkeeper-e2e/**" \
+            -Dsonar.coverage.exclusions="**/*Main.java,**/*Application.java,**/*Module.java,**/*UseCases.java,**/*Repository.java,**/*Catalog.java,giftkeeper-app/src/main/java/com/giftkeeper/app/RuleBasedGiftSuggestionCatalog.java,giftkeeper-persistence-api/**,giftkeeper-bdd/**,giftkeeper-e2e/**" \
+            -Dsonar.cpd.exclusions="**/src/test/**,giftkeeper-bdd/**,giftkeeper-e2e/**"
