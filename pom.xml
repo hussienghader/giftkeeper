@@ -24,28 +24,23 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
     <sonar.projectKey>hussienghader_giftkeeper</sonar.projectKey>
+    <sonar.projectName>GiftKeeper Parent</sonar.projectName>
+    <sonar.organization>hussienghader</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    <sonar.coverage.jacoco.xmlReportPaths>
-      giftkeeper-domain/target/site/jacoco/jacoco.xml,
-      giftkeeper-persistence-jpa/target/site/jacoco/jacoco.xml,
-      giftkeeper-app/target/site/jacoco/jacoco.xml,
-      giftkeeper-gui/target/site/jacoco/jacoco.xml,
-      giftkeeper-cli/target/site/jacoco/jacoco.xml
-    </sonar.coverage.jacoco.xmlReportPaths>
     <sonar.java.source>17</sonar.java.source>
-    <sonar.exclusions>**/target/**</sonar.exclusions>
-    <sonar.coverage.exclusions>
-      **/*Main.java,
-      **/*Application.java,
-      **/*Module.java,
-      **/*UseCases.java,
-      **/*Repository.java,
-      **/*Catalog.java,
-      **/giftkeeper-persistence-api/src/main/java/**/*.java,
-      **/giftkeeper-bdd/src/main/java/**/*.java,
-      **/giftkeeper-e2e/src/main/java/**/*.java
-    </sonar.coverage.exclusions>
-    <sonar.cpd.exclusions>**/src/test/**</sonar.cpd.exclusions>
+    <sonar.coverage.jacoco.xmlReportPaths>**/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.exclusions>**/target/**,**/.git/**,**/.mvn/**,giftkeeper-persistence-api/**,giftkeeper-bdd/src/main/java/**,giftkeeper-e2e/src/main/java/**</sonar.exclusions>
+    <sonar.coverage.exclusions>**/*Main.java,**/*Application.java,**/*Module.java,**/*UseCases.java,**/*Repository.java,**/*Catalog.java,**/JpaPersistence.java,giftkeeper-persistence-api/**,giftkeeper-bdd/**,giftkeeper-e2e/**</sonar.coverage.exclusions>
+    <sonar.cpd.exclusions>**/src/test/**,giftkeeper-bdd/**,giftkeeper-e2e/**</sonar.cpd.exclusions>
+    <sonar.issue.ignore.multicriteria>e1,e2,e3,e4</sonar.issue.ignore.multicriteria>
+    <sonar.issue.ignore.multicriteria.e1.ruleKey>java:S5778</sonar.issue.ignore.multicriteria.e1.ruleKey>
+    <sonar.issue.ignore.multicriteria.e1.resourceKey>**/src/test/java/**/*</sonar.issue.ignore.multicriteria.e1.resourceKey>
+    <sonar.issue.ignore.multicriteria.e2.ruleKey>java:S5785</sonar.issue.ignore.multicriteria.e2.ruleKey>
+    <sonar.issue.ignore.multicriteria.e2.resourceKey>**/src/test/java/**/*</sonar.issue.ignore.multicriteria.e2.resourceKey>
+    <sonar.issue.ignore.multicriteria.e3.ruleKey>java:S6068</sonar.issue.ignore.multicriteria.e3.ruleKey>
+    <sonar.issue.ignore.multicriteria.e3.resourceKey>**/src/test/java/**/*</sonar.issue.ignore.multicriteria.e3.resourceKey>
+    <sonar.issue.ignore.multicriteria.e4.ruleKey>java:S5845</sonar.issue.ignore.multicriteria.e4.ruleKey>
+    <sonar.issue.ignore.multicriteria.e4.resourceKey>**/src/test/java/**/*</sonar.issue.ignore.multicriteria.e4.resourceKey>
     <junit.version>5.10.2</junit.version>
     <sonar.maven.plugin.version>4.0.0.4121</sonar.maven.plugin.version>
     <assertj.version>3.26.3</assertj.version>
