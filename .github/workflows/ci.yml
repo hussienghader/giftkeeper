@@ -38,4 +38,3 @@ jobs:
           -Dsonar.organization=hussienghader
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.token=${SONAR_TOKEN}
-          -Dsonar.coverage.exclusions=**/*Main.java,**/*Application.java,**/*Module.java,**/*UseCases.java,**/*Repository.java,**/*Catalog.java,**/giftkeeper-persistence-api/src/main/java/**/*.java,**/giftkeeper-bdd/src/main/java/**/*.java,**/giftkeeper-e2e/src/main/java/**/*.java

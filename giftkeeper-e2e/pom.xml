@@ -8,6 +8,9 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>giftkeeper-e2e</artifactId>
+  <properties>
+    <sonar.skip>true</sonar.skip>
+  </properties>
   <dependencies>
     <dependency><groupId>com.giftkeeper</groupId><artifactId>giftkeeper-app</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>com.giftkeeper</groupId><artifactId>giftkeeper-gui</artifactId><version>${project.version}</version></dependency>
