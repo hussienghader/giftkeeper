@@ -58,8 +58,8 @@ class GiftKeeperFrameTest {
         when(service.listOccasions()).thenReturn(List.of(occasion));
         when(service.listGifts()).thenReturn(List.of(gift));
         when(service.createPerson(anyString(), any(LocalDate.class))).thenReturn(person);
-        when(service.createOccasion(eq(personId), eq(OccasionType.BIRTHDAY), eq(LocalDate.of(2026, 6, 8)), eq("Birthday"))).thenReturn(occasion);
-        when(service.createGiftIdea(eq(personId), eq(occasionId), eq("Book"), eq(new BigDecimal("10.00")), eq("Sci-fi"))).thenReturn(gift);
+        when(service.createOccasion(personId, OccasionType.BIRTHDAY, LocalDate.of(2026, 6, 8), "Birthday")).thenReturn(occasion);
+        when(service.createGiftIdea(personId, occasionId, "Book", new BigDecimal("10.00"), "Sci-fi")).thenReturn(gift);
         when(service.changeGiftStatus(giftId, GiftStatus.PLANNED)).thenReturn(gift);
 
         final GiftKeeperFrame frame = new GiftKeeperFrame(service);

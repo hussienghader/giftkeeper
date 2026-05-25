@@ -157,7 +157,7 @@ class JpaRepositoryUnitTest {
 
         @SuppressWarnings("unchecked") final TypedQuery<JpaOccasionEntity> query = mock(TypedQuery.class);
         when(em.createQuery(any(String.class), eq(JpaOccasionEntity.class))).thenReturn(query);
-        when(query.setParameter(eq("personId"), eq(personId))).thenReturn(query);
+        when(query.setParameter("personId", personId)).thenReturn(query);
         when(query.getResultList()).thenReturn(List.of(entity)).thenReturn(List.of()).thenReturn(List.of(entity)).thenReturn(List.of());
         assertThat(repository.findByPersonId(personId))
             .singleElement()
@@ -223,7 +223,7 @@ class JpaRepositoryUnitTest {
 
         @SuppressWarnings("unchecked") final TypedQuery<JpaGiftIdeaEntity> query = mock(TypedQuery.class);
         when(em.createQuery(any(String.class), eq(JpaGiftIdeaEntity.class))).thenReturn(query);
-        when(query.setParameter(eq("personId"), eq(personId))).thenReturn(query);
+        when(query.setParameter("personId", personId)).thenReturn(query);
         when(query.getResultList()).thenReturn(List.of(entity)).thenReturn(List.of()).thenReturn(List.of(entity)).thenReturn(List.of());
         assertThat(repository.findByPersonId(personId))
             .singleElement()
@@ -255,7 +255,7 @@ class JpaRepositoryUnitTest {
         when(em.getTransaction()).thenReturn(tx);
         when(tx.isActive()).thenReturn(false);
         final UUID personId = UUID.randomUUID();
-        when(em.getReference(eq(JpaPersonEntity.class), eq(personId))).thenReturn(new JpaPersonEntity());
+        when(em.getReference(JpaPersonEntity.class, personId)).thenReturn(new JpaPersonEntity());
         when(em.merge(any(JpaGiftIdeaEntity.class))).thenThrow(new IllegalStateException("boom"));
         final JpaGiftIdeaRepository repository = new JpaGiftIdeaRepository(em);
         final GiftIdea gift = new GiftIdea(UUID.randomUUID(), personId, null, "Book", new BigDecimal("9.99"), GiftStatus.PLANNED, "Sci-fi");

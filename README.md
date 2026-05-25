@@ -1,8 +1,10 @@
 # GiftKeeper – Final Academic Submission
 
-[![Build](https://github.com/hussienghader/giftkeeper/actions/workflows/ci.yml/badge.svg)](https://github.com/hussienghader/giftkeeper/actions/workflows/ci.yml)
+[![CI](https://github.com/hussienghader/giftkeeper/actions/workflows/ci.yml/badge.svg)](https://github.com/hussienghader/giftkeeper/actions/workflows/ci.yml)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=hussienghader_giftkeeper&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=hussienghader_giftkeeper)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=hussienghader_giftkeeper&metric=coverage)](https://sonarcloud.io/summary/new_code?id=hussienghader_giftkeeper)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=hussienghader_giftkeeper&metric=bugs)](https://sonarcloud.io/summary/new_code?id=hussienghader_giftkeeper)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=hussienghader_giftkeeper&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=hussienghader_giftkeeper)
 
 GiftKeeper is a Java 17 multi-module Maven project prepared for an academic course on **Test-Driven Development, Build Automation, Continuous Integration, Docker, Testing and Code Quality**. The project is intentionally structured to demonstrate clean architecture, automated tests at several levels, reproducible builds, CI, database integration, mutation testing and SonarCloud readiness.
 

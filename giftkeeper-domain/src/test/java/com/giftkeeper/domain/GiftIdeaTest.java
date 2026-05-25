@@ -150,9 +150,9 @@ class GiftIdeaTest {
 		final GiftIdea giftIdea = new GiftIdea(GIFT_ID, PERSON_ID, OCCASION_ID, "Book", new BigDecimal("10.00"), GiftStatus.PLANNED, "note");
 
 		giftIdea.setNotes(null);
-		assertThat(giftIdea.getNotes()).isEqualTo("");
+		assertThat(giftIdea.getNotes()).isEmpty();
 
 		giftIdea.setNotes("   ");
-		assertThat(giftIdea.getNotes()).isEqualTo("");
+		assertThat(giftIdea.getNotes()).isEmpty();
 	}
 }
