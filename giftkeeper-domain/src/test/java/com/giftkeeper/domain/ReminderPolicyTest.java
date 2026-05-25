@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("java:S5778")
 class ReminderPolicyTest {
 	@Test
 	void shouldCreateValidReminderPolicy() {

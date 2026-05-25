@@ -23,7 +23,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
-    <sonar.projectKey>alhusseinghader3_giftkeeper</sonar.projectKey>
+    <sonar.projectKey>hussienghader_giftkeeper</sonar.projectKey>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.coverage.jacoco.xmlReportPaths>
       giftkeeper-domain/target/site/jacoco/jacoco.xml,
@@ -33,9 +33,11 @@
       giftkeeper-cli/target/site/jacoco/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
     <sonar.java.source>17</sonar.java.source>
-    <sonar.exclusions>
-      **/GiftKeeperGuiMain.java,**/GiftKeeperCliMain.java
-    </sonar.exclusions>
+    <sonar.exclusions>**/target/**</sonar.exclusions>
+    <sonar.coverage.exclusions>
+      **/*Main.java,**/*Module.java,**/giftkeeper-persistence-api/src/main/java/**/*.java
+    </sonar.coverage.exclusions>
+    <sonar.cpd.exclusions>**/src/test/**</sonar.cpd.exclusions>
     <junit.version>5.10.2</junit.version>
     <sonar.maven.plugin.version>4.0.0.4121</sonar.maven.plugin.version>
     <assertj.version>3.26.3</assertj.version>

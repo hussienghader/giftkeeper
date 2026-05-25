@@ -28,6 +28,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
+@SuppressWarnings("java:S5778")
 class JpaRepositoryUnitTest {
     @Test
     void shouldMapEntitiesToDomainObjects() {

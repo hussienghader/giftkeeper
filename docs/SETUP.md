@@ -80,14 +80,14 @@ git init
 git add .
 git commit -m "Initial GiftKeeper final academic project"
 git branch -M main
-git remote add origin https://github.com/alhusseinghader3/giftkeeper.git
+git remote add origin https://github.com/hussienghader/giftkeeper.git
 git push -u origin main
 ```
 
 ## SonarCloud setup
 
 1. Create the project in SonarCloud.
-2. Use project key: `alhusseinghader3_giftkeeper` or update the README/workflow to your chosen key.
+2. Use project key: `hussienghader_giftkeeper` or update the README/workflow to your chosen key.
 3. In GitHub repository settings, add secret `SONAR_TOKEN`.
 4. Add repository variable `SONAR_ORGANIZATION`.
 5. Push again and check GitHub Actions.

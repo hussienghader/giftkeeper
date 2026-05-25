@@ -21,11 +21,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class GiftKeeperFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private final GiftKeeperUseCases service;
+	private final transient GiftKeeperUseCases service;
     private final DefaultTableModel personTableModel = new DefaultTableModel(new Object[]{"Id", "Name", "Birth date"}, 0);
     private final DefaultTableModel occasionTableModel = new DefaultTableModel(new Object[]{"Id", "Person", "Type", "Date", "Description"}, 0);
     private final DefaultTableModel giftTableModel = new DefaultTableModel(new Object[]{"Id", "Person", "Occasion", "Title", "Price", "Status"}, 0);
@@ -54,7 +55,7 @@ public class GiftKeeperFrame extends JFrame {
     public GiftKeeperFrame(final GiftKeeperUseCases service) {
         super("GiftKeeper");
         this.service = service;
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(1200, 700);
         buildUi();
         wireActions();

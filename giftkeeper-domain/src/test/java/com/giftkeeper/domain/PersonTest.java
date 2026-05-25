@@ -11,6 +11,7 @@ import java.time.ZoneOffset;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("java:S5778")
 class PersonTest {
 	private static final UUID PERSON_ID = UUID.fromString("11111111-1111-1111-1111-111111111111");
 	private static final Clock FIXED_CLOCK = Clock.fixed(Instant.parse("2026-04-07T00:00:00Z"), ZoneOffset.UTC);

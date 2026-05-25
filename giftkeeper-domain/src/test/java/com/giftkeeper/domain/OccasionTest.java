@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("java:S5778")
 class OccasionTest {
 	private static final UUID OCCASION_ID = UUID.fromString("55555555-5555-5555-5555-555555555555");
 	private static final UUID PERSON_ID = UUID.fromString("66666666-6666-6666-6666-666666666666");

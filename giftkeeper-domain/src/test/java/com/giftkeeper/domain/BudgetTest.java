@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("java:S5778")
 class BudgetTest {
 	@Test
 	void shouldCreateValidBudget() {

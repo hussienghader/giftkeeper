@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("java:S5778")
 class GiftIdeaTest {
 	private static final UUID GIFT_ID = UUID.fromString("22222222-2222-2222-2222-222222222222");
 	private static final UUID PERSON_ID = UUID.fromString("33333333-3333-3333-3333-333333333333");

@@ -1,8 +1,8 @@
 # GiftKeeper – Final Academic Submission
 
-[![Build](https://github.com/alhusseinghader3/giftkeeper/actions/workflows/ci.yml/badge.svg)](https://github.com/alhusseinghader3/giftkeeper/actions/workflows/ci.yml)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=alhusseinghader3_giftkeeper&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=alhusseinghader3_giftkeeper)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alhusseinghader3_giftkeeper&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alhusseinghader3_giftkeeper)
+[![Build](https://github.com/hussienghader/giftkeeper/actions/workflows/ci.yml/badge.svg)](https://github.com/hussienghader/giftkeeper/actions/workflows/ci.yml)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=hussienghader_giftkeeper&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=hussienghader_giftkeeper)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=hussienghader_giftkeeper&metric=coverage)](https://sonarcloud.io/summary/new_code?id=hussienghader_giftkeeper)
 
 GiftKeeper is a Java 17 multi-module Maven project prepared for an academic course on **Test-Driven Development, Build Automation, Continuous Integration, Docker, Testing and Code Quality**. The project is intentionally structured to demonstrate clean architecture, automated tests at several levels, reproducible builds, CI, database integration, mutation testing and SonarCloud readiness.
 
@@ -89,13 +89,13 @@ mvn clean verify
 or on Linux/macOS:
 
 ```bash
-./mvnw clean verify
+mvn clean verify
 ```
 
 On Windows PowerShell:
 
 ```powershell
-.\mvnw.cmd clean verify
+mvn clean verify
 ```
 
 Expected final result:
@@ -174,7 +174,7 @@ Manual SonarCloud command example:
 
 ```bash
 mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=alhusseinghader3_giftkeeper \
+  -Dsonar.projectKey=hussienghader_giftkeeper \
   -Dsonar.organization=YOUR_SONAR_ORGANIZATION \
   -Dsonar.host.url=https://sonarcloud.io \
   -Dsonar.token=YOUR_SONAR_TOKEN

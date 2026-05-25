@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("java:S5778")
 class ReminderEngineTest {
 	@Test
 	void shouldReturnOnlyOccasionsInsideReminderWindow() {

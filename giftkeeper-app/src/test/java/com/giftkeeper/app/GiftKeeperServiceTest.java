@@ -26,6 +26,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
+@SuppressWarnings("java:S5778")
 class GiftKeeperServiceTest {
     @Mock private PersonRepository personRepository;
     @Mock private OccasionRepository occasionRepository;

@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-USERNAME=${1:-alhusseinghader3}
+USERNAME=${1:-hussienghader}
 REPO=${2:-giftkeeper}
 
 if [ ! -d .git ]; then

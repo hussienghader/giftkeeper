@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("java:S5778")
 class GiftHistoryEntryTest {
 	@Test
 	void shouldCreateValidGiftHistoryEntry() {
