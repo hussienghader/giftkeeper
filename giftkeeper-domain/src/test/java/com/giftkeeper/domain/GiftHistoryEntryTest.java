@@ -53,8 +53,11 @@ class GiftHistoryEntryTest {
 		final Instant now = Instant.now();
 		final GiftHistoryEntry a = new GiftHistoryEntry(giftId, GiftStatus.PLANNED, GiftStatus.BOUGHT, now);
 		final GiftHistoryEntry b = new GiftHistoryEntry(giftId, GiftStatus.PLANNED, GiftStatus.BOUGHT, now);
-		assertThat(a).isEqualTo(b);
-		assertThat(a).hasSameHashCodeAs(b);
-		assertThat(a.toString()).contains("BOUGHT");
+		assertThat(a)
+        .isEqualTo(b)
+        .hasSameHashCodeAs(b);
+
+assertThat(a.toString())
+        .contains("BOUGHT");
 	}
 }
