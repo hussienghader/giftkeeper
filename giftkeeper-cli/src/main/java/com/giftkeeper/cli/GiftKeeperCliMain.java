@@ -11,7 +11,7 @@ public final class GiftKeeperCliMain {
 
     private GiftKeeperCliMain() {
     }
-
+    
     public static void main(final String[] args) {
         final GiftKeeperUseCases service = GiftKeeperApplication.createJpaInjector().getInstance(GiftKeeperUseCases.class);
         if (service.listPeople().isEmpty()) {
