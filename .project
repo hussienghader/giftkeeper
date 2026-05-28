@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-    <name>giftkeeper-parent</name>
-    <comment>GiftKeeper parent Maven project</comment>
-    <projects>
-        <project>giftkeeper-domain</project>
-        <project>giftkeeper-persistence-api</project>
-        <project>giftkeeper-persistence-jpa</project>
-        <project>giftkeeper-app</project>
-        <project>giftkeeper-gui</project>
-        <project>giftkeeper-cli</project>
-        <project>giftkeeper-bdd</project>
-        <project>giftkeeper-e2e</project>
-    </projects>
-    <buildSpec/>
-    <natures>
-        <nature>org.eclipse.m2e.core.maven2Nature</nature>
-    </natures>
+	<name>giftkeeper-parent</name>
+	<comment>GiftKeeper parent Maven project</comment>
+	<projects>
+		<project>giftkeeper-domain</project>
+		<project>giftkeeper-persistence-api</project>
+		<project>giftkeeper-persistence-jpa</project>
+		<project>giftkeeper-app</project>
+		<project>giftkeeper-gui</project>
+		<project>giftkeeper-cli</project>
+		<project>giftkeeper-bdd</project>
+		<project>giftkeeper-e2e</project>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+	</natures>
+	<filteredResources>
+		<filter>
+			<id>1779989569309</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>
