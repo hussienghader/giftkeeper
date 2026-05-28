@@ -5,9 +5,6 @@ target/
 # IDE files
 .idea/
 .vscode/
-.settings/
-.classpath
-.project
 *.iml
 .factorypath
 .metadata/

@@ -20,11 +20,12 @@ import org.testcontainers.utility.DockerImageName;
 
 @Testcontainers
 class JpaRepositoriesIntegrationTest {
-    @Container
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(DockerImageName.parse("postgres:16"))
-        .withDatabaseName("giftkeeper")
-        .withUsername("giftkeeper")
-        .withPassword("giftkeeper");
+	@SuppressWarnings("resource")
+	@Container
+	static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(DockerImageName.parse("postgres:16"))
+	        .withDatabaseName("giftkeeper")
+	        .withUsername("giftkeeper")
+	        .withPassword("giftkeeper");
 
     private EntityManager entityManager;
 

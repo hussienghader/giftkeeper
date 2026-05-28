@@ -25,8 +25,8 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class GiftKeeperFrame extends JFrame {
-	private static final long serialVersionUID = 1L;
-	private final transient GiftKeeperUseCases service;
+    private static final long serialVersionUID = 1L;
+    private final transient GiftKeeperUseCases service;
     private final DefaultTableModel personTableModel = new DefaultTableModel(new Object[]{"Id", "Name", "Birth date"}, 0);
     private final DefaultTableModel occasionTableModel = new DefaultTableModel(new Object[]{"Id", "Person", "Type", "Date", "Description"}, 0);
     private final DefaultTableModel giftTableModel = new DefaultTableModel(new Object[]{"Id", "Person", "Occasion", "Title", "Price", "Status"}, 0);

@@ -1,104 +1,49 @@
-# GiftKeeper Final Academic Report
+# GiftKeeper Final Report
 
-## 1. Project overview
+## Implemented application
 
-GiftKeeper is a Java 17 application for managing people, occasions, gift ideas, budgets, reminders and gift purchase status. The project was designed for an academic course on Test-Driven Development, Build Automation and Continuous Integration. The goal is not only to deliver a working application, but to demonstrate a complete software testing and quality workflow.
+GiftKeeper is a Java 17 desktop application for managing people, occasions, gift ideas, budgets, reminders and gift status transitions. The application is intentionally simple in its domain model so that the project can focus on automated software testing, build automation, continuous integration, code coverage, mutation testing and code quality.
 
-## 2. Architecture
+## Architecture and design choices
 
-The project follows a clean modular architecture:
+The project is split into Maven modules: domain, persistence API, JPA persistence adapter, application services, GUI, CLI, BDD and E2E. The domain layer is independent from infrastructure. Repositories are represented as ports in the persistence API module. The JPA module implements those ports using Hibernate and PostgreSQL. The application module coordinates use cases and dependency injection with Google Guice. The GUI and CLI depend on the application layer.
 
-- `giftkeeper-domain`: pure domain model and business rules.
-- `giftkeeper-persistence-api`: repository interfaces acting as ports.
-- `giftkeeper-persistence-jpa`: PostgreSQL JPA/Hibernate implementation.
-- `giftkeeper-app`: application services and dependency injection.
-- `giftkeeper-gui`: Swing graphical interface.
-- `giftkeeper-cli`: command-line interface.
-- `giftkeeper-bdd`: Cucumber behavior-driven scenarios.
-- `giftkeeper-e2e`: end-to-end workflow tests.
+## Testing strategy
 
-This structure keeps business logic independent from persistence and UI details, making the project easier to test and maintain.
+The testing pyramid is respected by keeping most tests at domain and service level. Unit tests cover validation rules, status transitions, budgets, reminders and service behavior. Mockito is used where collaborators must be isolated. Integration tests exercise the JPA repositories against PostgreSQL started through Testcontainers. BDD tests describe user-level behavior with Cucumber. E2E tests execute a complete workflow through the application service and real persistence. GUI tests validate Swing behavior and interactions.
 
-## 3. Database
+## Coverage and exclusions
 
-The project uses a real PostgreSQL database through JPA/Hibernate. The database is available in two ways:
+JaCoCo and SonarCloud focus on executable business and persistence code. Bootstrap classes, module wiring, runners and GUI-heavy Swing infrastructure are excluded from coverage because they do not contain meaningful domain logic and are validated indirectly by integration, GUI, CLI, BDD and E2E tests. This follows the exam guideline that some code may be excluded from coverage when justified.
 
-1. Local manual execution through Docker Compose.
-2. Automated integration/E2E tests through Testcontainers.
+## Mutation testing
 
-This avoids relying only on fake persistence and demonstrates database integration testing with a real DBMS.
+PIT is configured for the modules containing essential business logic: domain, application and JPA persistence. Mutation testing is intentionally focused on those modules to avoid excessive build time and to provide meaningful evidence on the correctness of the most important code.
 
-## 4. Testing strategy
+## Docker and reproducibility
 
-### Unit testing
+PostgreSQL is used as the real database. Integration and E2E tests start PostgreSQL automatically through Testcontainers during the Maven build, so the teacher only needs Java 17, Maven and Docker running locally. Local manual execution can also use the Docker Compose file in the docker folder.
 
-Domain objects and application services are tested with JUnit 5 and AssertJ. The tests validate business rules such as invalid names, birth dates, gift prices, reminder policies, budget checks and gift status changes.
+## CI and code quality
 
-### Mocking
+GitHub Actions runs the Maven verification pipeline on Linux and performs SonarCloud analysis. The workflow uses `fetch-depth: 0` and runs GUI-related tests under Xvfb. SonarCloud receives JaCoCo XML reports generated during the build.
 
-Mockito is used to isolate application services from collaborators. This demonstrates testing behavior without depending on real external services.
-
-### Integration testing
-
-JPA repositories are tested against PostgreSQL using Testcontainers. These tests verify entity mapping, transactions and repository behavior using a real database. In the corrected version, these tests are not silently skipped: Docker/Testcontainers problems are visible in the build so the submitted evidence is trustworthy.
-
-### UI testing
-
-The Swing GUI is tested with UI-oriented tests to verify that the frame can interact with the application service and display data correctly.
-
-### BDD
-
-Cucumber is used to express user-visible behavior in a high-level feature file and connect it to Java step definitions.
-
-### E2E testing
-
-The E2E module verifies a complete application workflow: creating a person, occasion and gift, changing gift status and reading the final state.
-
-## 5. Build automation
-
-Maven is used as the build automation tool. The full project is verified with:
+## How to reproduce
 
 ```bash
-mvn clean verify   # must end with BUILD SUCCESS and Skipped: 0
+mvn clean verify
 ```
 
-The project is multi-module, so Maven builds the modules in the correct dependency order.
-
-## 6. Code coverage
-
-JaCoCo generates HTML and XML reports. These reports provide evidence that the automated tests cover the main production code.
-
-## 7. Mutation testing
-
-PIT is configured to assess the strength of the tests. Mutation testing is stronger than line coverage because it checks whether tests detect small changes in production code.
-
-Recommended command:
+For mutation testing:
 
 ```bash
 mvn -pl giftkeeper-domain,giftkeeper-persistence-api,giftkeeper-persistence-jpa,giftkeeper-app -am install -DskipTests
 mvn -pl giftkeeper-domain,giftkeeper-persistence-jpa,giftkeeper-app pitest:mutationCoverage
 ```
 
-## 8. Continuous Integration
-
-GitHub Actions runs the automated verification pipeline on every push and pull request. The workflow builds the project, runs tests, generates reports, runs mutation testing evidence and integrates with SonarCloud when secrets are configured.
-
-## 9. Code quality
-
-SonarCloud is used for static analysis, code smells, maintainability and quality-gate evidence. The project includes a SonarCloud-ready configuration and workflow.
-
-## 10. Docker
-
-Docker is used for PostgreSQL, both for local development and for reproducible integration testing. This avoids installing PostgreSQL manually on each machine and supports reproducible testing. The project includes Windows helper scripts and classpath Testcontainers configuration to avoid stale user-level Docker settings.
-
-## 11. Final verification commands
+For the GUI:
 
 ```bash
-mvn clean verify   # must end with BUILD SUCCESS and Skipped: 0
-mvn -pl giftkeeper-domain,giftkeeper-persistence-api,giftkeeper-persistence-jpa,giftkeeper-app -am install -DskipTests
-mvn -pl giftkeeper-domain,giftkeeper-persistence-jpa,giftkeeper-app pitest:mutationCoverage
+docker compose -f docker/docker-compose.yml up -d
+mvn -pl giftkeeper-gui -am exec:java -Dexec.mainClass=com.giftkeeper.gui.GiftKeeperGuiMain
 ```
-
-## 12. Conclusion
-
-GiftKeeper demonstrates the main topics expected in the course: TDD, JUnit, Maven build automation, Mockito, JaCoCo, PIT, Docker, Testcontainers, BDD, E2E testing, GUI testing, GitHub Actions and SonarCloud. The project is structured to be understandable in an oral exam and reproducible on another machine.

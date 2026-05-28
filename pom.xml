@@ -34,7 +34,7 @@
     <sonar.exclusions>**/target/**,**/.git/**,**/.mvn/**,giftkeeper-persistence-api/**,giftkeeper-bdd/**,giftkeeper-e2e/**</sonar.exclusions>
     <sonar.coverage.exclusions>**/*Main.java,**/*Application.java,**/*Module.java,**/*UseCases.java,**/*Repository.java,**/*Catalog.java,giftkeeper-gui/**,giftkeeper-cli/src/main/java/com/giftkeeper/cli/GiftKeeperCliMain.java,giftkeeper-app/src/main/java/com/giftkeeper/app/GiftKeeperApplication.java,giftkeeper-app/src/main/java/com/giftkeeper/app/GiftKeeperInMemoryModule.java,giftkeeper-app/src/main/java/com/giftkeeper/app/GiftKeeperJpaModule.java,giftkeeper-app/src/main/java/com/giftkeeper/app/GiftKeeperUseCases.java,giftkeeper-app/src/main/java/com/giftkeeper/app/GiftSuggestionCatalog.java,giftkeeper-app/src/main/java/com/giftkeeper/app/RuleBasedGiftSuggestionCatalog.java,giftkeeper-persistence-api/**,giftkeeper-bdd/**,giftkeeper-e2e/**</sonar.coverage.exclusions>
     <sonar.cpd.exclusions>**/src/test/**,giftkeeper-bdd/**,giftkeeper-e2e/**</sonar.cpd.exclusions>
-    <sonar.issue.ignore.multicriteria>e1,e2,e3,e4,e5</sonar.issue.ignore.multicriteria>
+    <sonar.issue.ignore.multicriteria>e1,e2,e3,e4</sonar.issue.ignore.multicriteria>
     <sonar.issue.ignore.multicriteria.e1.ruleKey>java:S5778</sonar.issue.ignore.multicriteria.e1.ruleKey>
     <sonar.issue.ignore.multicriteria.e1.resourceKey>**/src/test/java/**/*</sonar.issue.ignore.multicriteria.e1.resourceKey>
     <sonar.issue.ignore.multicriteria.e2.ruleKey>java:S5785</sonar.issue.ignore.multicriteria.e2.ruleKey>
@@ -43,8 +43,6 @@
     <sonar.issue.ignore.multicriteria.e3.resourceKey>**/src/test/java/**/*</sonar.issue.ignore.multicriteria.e3.resourceKey>
     <sonar.issue.ignore.multicriteria.e4.ruleKey>java:S5845</sonar.issue.ignore.multicriteria.e4.ruleKey>
     <sonar.issue.ignore.multicriteria.e4.resourceKey>**/src/test/java/**/*</sonar.issue.ignore.multicriteria.e4.resourceKey>
-    <sonar.issue.ignore.multicriteria.e5.ruleKey>java:S106</sonar.issue.ignore.multicriteria.e5.ruleKey>
-    <sonar.issue.ignore.multicriteria.e5.resourceKey>giftkeeper-cli/src/main/java/com/giftkeeper/cli/GiftKeeperCliMain.java</sonar.issue.ignore.multicriteria.e5.resourceKey>
 
     <junit.version>5.10.2</junit.version>
     <sonar.maven.plugin.version>4.0.0.4121</sonar.maven.plugin.version>
