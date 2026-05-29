@@ -2,12 +2,9 @@
 
 ## Overview
 
-GiftKeeper is a modular Java application developed as part of the course:
+GiftKeeper is a modular Java application designed to manage people, occasions, gift ideas, budgets, and gift histories.
 
-**Automated Software Testing – 2024/2025**
-Università degli Studi di Firenze
-
-The project demonstrates advanced software testing techniques and modern software engineering practices, including:
+The project was developed as part of the _Automated Software Testing_ course and focuses on advanced software engineering practices including:
 
 - Test-Driven Development (TDD)
 - Unit Testing
@@ -15,28 +12,42 @@ The project demonstrates advanced software testing techniques and modern softwar
 - End-to-End Testing
 - Mutation Testing
 - Continuous Integration
-- Build Automation
 - Code Quality Analysis
-- Docker-based testing environments
-- GitHub Actions CI pipelines
+- Dockerized Testing Environments
 
-The application allows users to manage:
+The application provides both:
 
-- People
-- Gift ideas
-- Occasions
-- Gift statuses
-- Reminder policies
-- Gift history tracking
+- Command Line Interface (CLI)
+- Desktop Graphical User Interface (Swing GUI)
+
+The architecture separates domain logic, application services, persistence contracts, and persistence implementations into independent Maven modules.
 
 ---
 
-# Project Architecture
+# Main Technologies
 
-The project follows a modular Maven architecture:
+| Technology     | Purpose                       |
+| -------------- | ----------------------------- |
+| Java 17        | Main programming language     |
+| Maven          | Multi-module build automation |
+| JUnit 5        | Unit and integration testing  |
+| AssertJ        | Fluent assertions             |
+| Mockito        | Mocking dependencies          |
+| Hibernate/JPA  | ORM and persistence           |
+| PostgreSQL     | Relational database           |
+| Testcontainers | Dockerized testing            |
+| Docker         | Reproducible environments     |
+| GitHub Actions | Continuous Integration        |
+| JaCoCo         | Code coverage                 |
+| PIT            | Mutation testing              |
+| SonarCloud     | Static code analysis          |
+
+---
+
+# Project Structure
 
 ```text
-giftkeeper-parent
+giftkeeper/
 │
 ├── giftkeeper-domain
 ├── giftkeeper-app
@@ -44,52 +55,62 @@ giftkeeper-parent
 ├── giftkeeper-persistence-jpa
 ├── giftkeeper-cli
 ├── giftkeeper-gui
+├── giftkeeper-e2e
 ├── giftkeeper-bdd
-└── giftkeeper-e2e
+│
+├── docker
+├── .github/workflows
+│
+├── pom.xml
+└── README.md
 ```
 
 ---
 
-# Modules Description
+# Architecture
 
-## giftkeeper-domain
+The project follows a layered and modular architecture.
+
+## Domain Layer
 
 Contains:
 
-- Entities
-- Value objects
-- Enumerations
-- Core business rules
+- business entities
+- domain validation
+- domain rules
+- immutable identifiers
+- business state transitions
 
 Examples:
 
 - Person
 - Occasion
 - GiftIdea
+- Budget
 - GiftHistoryEntry
-- ReminderPolicy
 
 ---
 
-## giftkeeper-app
+## Application Layer
 
-Application service layer.
+Contains use cases and orchestration logic.
 
-Contains:
+The application layer coordinates repositories and domain entities without depending on infrastructure details.
 
-- Business use cases
-- Dependency injection bootstrap
-- Coordination logic between layers
+Examples:
 
-Main service:
-
-- `GiftKeeperUseCases`
+- createPerson
+- createOccasion
+- createGiftIdea
+- changeGiftStatus
 
 ---
 
-## giftkeeper-persistence-api
+## Persistence API Layer
 
-Defines repository interfaces and persistence contracts.
+Defines repository interfaces used by the application layer.
+
+This layer decouples business logic from persistence implementation.
 
 Examples:
 
@@ -99,79 +120,125 @@ Examples:
 
 ---
 
-## giftkeeper-persistence-jpa
+## Persistence JPA Layer
 
-Implements persistence using:
+Implements repositories using:
 
-- Hibernate ORM
+- Hibernate
+- JPA
 - PostgreSQL
-- Jakarta Persistence API (JPA)
+
+This layer is used in integration and end-to-end tests.
 
 ---
 
-## giftkeeper-cli
+## User Interfaces
 
-Command-line interface demonstrating application usage.
+The application provides:
 
----
+- CLI interface
+- Swing GUI interface
 
-## giftkeeper-gui
-
-Desktop graphical interface implementation.
-
----
-
-## giftkeeper-bdd
-
-Behavior-driven testing module.
-
-Contains higher-level behavioral scenarios.
+Both interfaces use the same application services.
 
 ---
 
-## giftkeeper-e2e
+# Testing Strategy
 
-End-to-end integration testing using:
+The project applies multiple levels of automated testing.
 
-- PostgreSQL Testcontainers
-- Real database execution flow
+## Unit Tests
 
----
+Unit tests isolate components and verify:
 
-# Technologies Used
+- domain validation
+- business rules
+- edge cases
+- state transitions
 
-| Technology           | Purpose                    |
-| -------------------- | -------------------------- |
-| Java 17              | Main programming language  |
-| Maven                | Build automation           |
-| JUnit 5              | Unit testing               |
-| AssertJ              | Fluent assertions          |
-| Mockito              | Mocking                    |
-| Hibernate ORM        | Persistence                |
-| PostgreSQL           | Database                   |
-| Testcontainers       | Integration testing        |
-| Docker               | Environment virtualization |
-| GitHub Actions       | Continuous Integration     |
-| JaCoCo               | Code coverage              |
-| PIT Mutation Testing | Mutation analysis          |
-| SonarCloud           | Code quality analysis      |
+Mockito is used when dependency isolation is required.
+
+InMemory repositories are intentionally used only in unit tests to support fast TDD cycles and isolated component testing.
 
 ---
 
-# Build Instructions
+## Integration Tests
 
-## Clean Build
+Integration tests verify collaboration between:
+
+- application services
+- JPA repositories
+- Hibernate
+- PostgreSQL
+
+These tests use:
+
+- Docker
+- Testcontainers
+
+A real PostgreSQL container is automatically started during test execution.
+
+---
+
+## End-to-End Tests
+
+End-to-end tests validate complete application flows through the real persistence layer.
+
+The tests verify:
+
+- database interaction
+- application orchestration
+- full workflow execution
+
+---
+
+## Mutation Testing
+
+PIT mutation testing is used to evaluate the effectiveness of the test suite.
+
+The goal is not only high coverage percentages, but also strong fault detection capability.
+
+---
+
+# Continuous Integration
+
+GitHub Actions automatically executes:
+
+- Maven build
+- unit tests
+- integration tests
+- mutation testing
+- code quality analysis
+
+on every push.
+
+---
+
+# Code Quality
+
+The project integrates SonarCloud for:
+
+- static analysis
+- maintainability checks
+- code smell detection
+- quality gate verification
+
+---
+
+# Running the Project
+
+## Requirements
+
+- Java 17
+- Maven 3.9+
+- Docker Desktop
+
+---
+
+## Build
 
 ```bash
 mvn clean verify
-```
-
----
-
-## Run Mutation Testing
-
-```bash
-mvn org.pitest:pitest-maven:mutationCoverage
 ```
 
 ---
@@ -192,59 +259,37 @@ mvn -pl giftkeeper-gui exec:java
 
 ---
 
-# Testing Strategy
+# Running Tests
 
-The project applies multiple testing layers:
+## Unit + Integration Tests
 
-| Test Type         | Purpose                       |
-| ----------------- | ----------------------------- |
-| Unit Tests        | Validate isolated components  |
-| Mock Tests        | Isolate dependencies          |
-| Integration Tests | Verify module interaction     |
-| End-to-End Tests  | Validate complete workflows   |
-| Mutation Testing  | Evaluate test robustness      |
-| BDD Tests         | Validate behavioral scenarios |
+```bash
+mvn test
+```
 
----
+## Full Verification
 
-# Code Quality
+```bash
+mvn verify
+```
 
-The project integrates:
+## Mutation Testing
 
-- SonarCloud analysis
-- JaCoCo coverage reports
-- PIT mutation testing
-- GitHub Actions CI
-
-The final version achieves:
-
-- Clean CI pipeline
-- No SonarCloud code smells
-- High test coverage
-- Modular architecture
+```bash
+mvn -Pmutation test
+```
 
 ---
 
-# Docker Usage
+# Educational Goals
 
-The project uses PostgreSQL containers during integration and E2E tests through Testcontainers.
+The project was developed to demonstrate practical application of:
 
-This guarantees:
+- automated software testing
+- modular architecture
+- build automation
+- continuous integration
+- containerized testing
+- maintainable software design
 
-- Reproducible environments
-- Isolated database execution
-- Reliable CI execution
-
----
-
-# Continuous Integration
-
-GitHub Actions automatically performs:
-
-- Compilation
-- Unit tests
-- Integration tests
-- Coverage analysis
-- SonarCloud verification
-
----
+within a realistic Java application.
